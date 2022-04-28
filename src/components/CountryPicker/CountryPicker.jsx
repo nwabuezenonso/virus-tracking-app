@@ -3,7 +3,7 @@ import React from 'react'
 
 const CountryPicker = () => {
   return (
-    <div>Cards</div>
+    <div>CountryPicker</div>
   )
 }
 

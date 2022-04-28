@@ -1,9 +1,8 @@
 import React from 'react'
 
-
 const Chart = () => {
   return (
-    <div>Cards</div>
+    <div>Chart</div>
   )
 }
 
