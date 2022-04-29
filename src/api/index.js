@@ -25,6 +25,7 @@ export const fetchDailyData = async () => {
     try {
         const { data } = await axios.get(`${url}/daily`)
 
+        //implement array into object and taking there 3 values out from it
         const modifiedData = data.map((dailyData) => ({
             confirmed: dailyData.confirmed.total,
             deaths: dailyData.deaths.total,
