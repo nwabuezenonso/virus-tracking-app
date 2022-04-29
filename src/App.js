@@ -15,6 +15,7 @@ class App extends React.Component {
   }
 
   //loads the method when the component is mounted
+  //async operation in a component did mount comes right in front of it
   async componentDidMount(){
     const fetchedData = await fetchData()
     
