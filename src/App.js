@@ -1,12 +1,13 @@
 import React from 'react'
-
 //importing several component file
 //folder automatically loads index file
 import { Cards, Chart, CountryPicker } from './components';
 import styles from './App.module.css';
-//folder automatically loads index file
+//folder automatically loads index file fomr the api folder
 import { fetchData } from './api'
 
+
+//class component
 class App extends React.Component {
   //state is used for storing data
   state = {
@@ -26,9 +27,10 @@ class App extends React.Component {
     //taking the data from the state and share it using props
     const { data } = this.state
 
-    //nesting components in a div
+    //nesting components in the root app component
     return (
       <div className={styles.container}>
+        {/* passing data as props from the state */}
         <Cards data={data}/>
         <CountryPicker />
         <Chart />
