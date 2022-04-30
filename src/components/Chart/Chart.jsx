@@ -11,6 +11,7 @@ import styles from './Chart.module.css'
 //chart functional component
 const Chart = () => {
   // creating state
+  //with several dailydata
   const [ dailyData, setDailyData] = useState([])
   
   //setting useEffect
@@ -26,15 +27,16 @@ const Chart = () => {
   //implementing line chart
   const lineChart = (
     //if there are content in the daily data array then result else null
+    //with the data below, a linechart is created
     dailyData.length
     ? (
       <Line 
         data={{
           //using map to store our date object in a new form called date
-          // return a new date
+          // return a new date and mapping it to line chart
           labels: dailyData.map(({ date}) => date),
           datasets: [{
-            //return the data confirmed
+            //return the data confirmed and mapping it to the bar line
             data: dailyData.map(({ confirmed }) => confirmed),
             label:  'Infected',
             borderColor: '#3333ff',
