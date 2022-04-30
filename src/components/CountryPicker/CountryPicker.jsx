@@ -27,13 +27,13 @@ const CountryPicker = () => {
     //set the state to reload when the fetch country data changed
   }, [setFetchedCountries]);
 
-  console.log(fetchedCountries);
-
   //form control component from material UI
   return (
     <FormControl className='{styles.formControl}'>
       <NativeSelect>
         <option value="global">Global</option>
+        {/* fetching all the countries and applying it to the option tag*/}
+        {fetchedCountries.map((country, i) => <option key={i} value={country}> {country}</option>)}
       </NativeSelect>
     </FormControl>
   )

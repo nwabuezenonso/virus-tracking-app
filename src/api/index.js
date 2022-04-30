@@ -27,7 +27,9 @@ export const fetchDailyData = async () => {
 
         //map the array into an object of three method
         //there are several object for date, confirmed and deaths
+        //they already have their index
         const modifiedData = data.map((dailyData) => ({
+            //mapping out all the data in confirmed, deaths and date
             confirmed: dailyData.confirmed.total,
             deaths: dailyData.deaths.total,
             date: dailyData.reportDate
