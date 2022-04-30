@@ -1,21 +1,35 @@
+//importing react and useState and useEffect from react
 import React, { useState, useEffect } from 'react';
+
+//importing Nativeselect and formcontrol from material ui
 import { NativeSelect, FormControl } from '@material-ui/core';
 
+//importing style
 import  Styles from './CountryPicker.module.css';
 
-import { countries } from '../../api';
+//importing API
+import { fetchCountries } from '../../api';
 
+//funtional component
 const CountryPicker = () => {
-  const [fetchCountries, setFetchCountries] =  useState([]);
+  // initializing state
+  const [fetchedCountries, setFetchedCountries] =  useState([]);
 
+  //applying the useEffect hook
   useEffect(() => {
-    const fetchCountries = async () =>{
-      setFetchCountries(await countries)
+    const fetchAPI = async () =>{
+      // function to set the fetchedcountries
+      setFetchedCountries(await fetchCountries())
     } 
 
-    fetchCountries()
-  }, [setFetchCountries])
+    //calling the function
+    fetchAPI()
+    //set the state to reload when the fetch country data changed
+  }, [setFetchedCountries]);
 
+  console.log(fetchedCountries);
+
+  //form control component from material UI
   return (
     <FormControl className='{styles.formControl}'>
       <NativeSelect>
@@ -25,4 +39,5 @@ const CountryPicker = () => {
   )
 }
 
+//exporting CountryPicker
 export default CountryPicker

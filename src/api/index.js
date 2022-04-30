@@ -26,7 +26,7 @@ export const fetchDailyData = async () => {
         const { data } = await axios.get(`${url}/daily`)
 
         //map the array into an object of three method
-        //there are several object for date, confiremed and deaths
+        //there are several object for date, confirmed and deaths
         const modifiedData = data.map((dailyData) => ({
             confirmed: dailyData.confirmed.total,
             deaths: dailyData.deaths.total,
@@ -39,11 +39,14 @@ export const fetchDailyData = async () => {
     }
 }
 
-export const countries = async () => {
+//asynchronous function to fetch countries 
+export const fetchCountries = async () => {
+    //try and catch block to fetch data when data is available
     try {
-        const response = await axios.get(`${url}/countries`)
+        const { data: { countries }} = await axios.get(`${url}/countries`)
 
-        console.log(response)
+        //return the countries and mapping out the name of the each individual country
+        return countries.map((country) => country.name)
     }catch ( error ){
         console.log(error)
     }
