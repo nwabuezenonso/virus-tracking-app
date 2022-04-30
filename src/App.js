@@ -6,6 +6,8 @@ import styles from './App.module.css';
 //folder automatically loads index file fomr the api folder
 import { fetchData } from './api'
 
+import coronaImage from './images/image.png'
+
 
 //class component
 class App extends React.Component {
@@ -45,6 +47,7 @@ class App extends React.Component {
     //nesting components in the root app component
     return (
       <div className={styles.container}>
+        <img className={styles.image} src={coronaImage} alt="COVID-19"/>
         {/* passing data as props from the state */}
         <Cards data={data}/>
         <CountryPicker  handleCountryChange={this.handleCountryChange}/>
