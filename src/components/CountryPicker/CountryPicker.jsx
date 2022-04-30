@@ -10,8 +10,8 @@ import  Styles from './CountryPicker.module.css';
 //importing API
 import { fetchCountries } from '../../api';
 
-//funtional component
-const CountryPicker = () => {
+//funtional component with props handlecountrychange
+const CountryPicker = ({ handleCountryChange }) => {
   // initializing state
   const [fetchedCountries, setFetchedCountries] =  useState([]);
 
@@ -30,7 +30,8 @@ const CountryPicker = () => {
   //form control component from material UI
   return (
     <FormControl className='{styles.formControl}'>
-      <NativeSelect>
+      {/* specifying a function on select */}
+      <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
         <option value="global">Global</option>
         {/* fetching all the countries and applying it to the option tag*/}
         {fetchedCountries.map((country, i) => <option key={i} value={country}> {country}</option>)}

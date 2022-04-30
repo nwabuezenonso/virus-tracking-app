@@ -10,8 +10,10 @@ import { fetchData } from './api'
 //class component
 class App extends React.Component {
   //state is used for storing data
+  //state with data and country properties
   state = {
     data: {},
+    country: ''
   }
 
   //loads the method when the component is mounted
@@ -24,6 +26,13 @@ class App extends React.Component {
 
   }
 
+  //function to handle country change
+  handleCountryChange = async( country ) => {
+    console.log(country)
+    // fetch the data    
+    //set the state
+  }
+
   render(){
     //taking the data from the state and share it using props
     const { data } = this.state
@@ -33,7 +42,7 @@ class App extends React.Component {
       <div className={styles.container}>
         {/* passing data as props from the state */}
         <Cards data={data}/>
-        <CountryPicker />
+        <CountryPicker  handleCountryChange={this.handleCountryChange}/>
         <Chart />
       </div>
     );
