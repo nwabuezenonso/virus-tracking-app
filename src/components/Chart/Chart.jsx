@@ -9,7 +9,7 @@ import { Line, Bar } from 'react-chartjs-2';
 import styles from './Chart.module.css'
 
 //chart functional component
-const Chart = () => {
+const Chart = ({data: { confirmed, deaths, recovered},country}) => {
   // creating state
   //with several dailydata
   const [ dailyData, setDailyData] = useState([])
@@ -22,7 +22,8 @@ const Chart = () => {
     }
     //calling the function
     fetchAPI();
-  });
+    //it make the data run once
+  }, []);
 
   //implementing line chart
   const lineChart = (
@@ -52,11 +53,43 @@ const Chart = () => {
         }}
     />) : null
     
-  )
+  );
+  
+  //loading bar chart
+  const barChart = (
+    //if confirmed exist then load bar else null
+    confirmed 
+    ? (
+      <Bar
+      // data has double braces, first is for making it dynamic and second is for making it and object
+          data={{
+            labels: ['Infected', ' Recovered', 'Deaths'],
+            datasets: [{
+              label: 'People',
+              backgroundColor: [
+                'rgba(0, 0, 255, 0.5)',
+                'rgba(0, 255, 0, 0.5)',
+                'rgba(255, 0, 0, 0.5)'
+              ],
+              //data in value
+              data: [ confirmed.value, recovered.value, deaths.value]
+            }]
+          }}
+
+          //options is object
+          options = {{
+            //legend is used for creating maps
+            legend: {display: false},
+            //title for displaing text
+            title: { display: true, text: `Current state in ${country}`}
+          }}
+      />
+    ): null
+  );
   
   return (
     <div className={styles.container}>
-      {lineChart}
+      { country ? barChart : lineChart}
     </div>
   )
 }

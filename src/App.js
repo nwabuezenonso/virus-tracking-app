@@ -48,7 +48,7 @@ class App extends React.Component {
         {/* passing data as props from the state */}
         <Cards data={data}/>
         <CountryPicker  handleCountryChange={this.handleCountryChange}/>
-        <Chart  data={data} country/>
+        <Chart  data={data} country={country}/>
       </div>
     );
   }
