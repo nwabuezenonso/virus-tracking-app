@@ -4,19 +4,27 @@ import axios from 'axios';
 //storing url in a variable
 const url  = 'https://covid19.mathdro.id/api';
 
-//exporting a function to fetch data
-export const fetchData = async () => {
+//exporting a function to fetch data and passing the country as an arguement
+export const fetchData = async ( country ) => {
+    // changeble url is equal to url
+    let changebleUrl = url;
+
+    // if country then the changeble url is equal to country
+    //else the country is equal to the url
+    if( country) {
+        changebleUrl = `${url}/countries/${country}`
+    }
 
     //try and catch block for error handling
     try {
-        //destructring data and its value from the url
-        const { data: {confirmed, recovered, deaths, lastUpdate} } = await axios.get(url)
+        //destructring data and its value from the changeble url
+        const { data: {confirmed, recovered, deaths, lastUpdate} } = await axios.get(changebleUrl)
         
         //returning the value gotten from data
        return { confirmed, recovered, deaths, lastUpdate, }
 
     }catch (error){
-
+        console.log(error)
     }
 }
 
