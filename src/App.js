@@ -13,7 +13,7 @@ class App extends React.Component {
   //state with data and country properties
   state = {
     data: {},
-    country: ''
+    country: '',
   }
 
   //loads the method when the component is mounted
@@ -32,13 +32,15 @@ class App extends React.Component {
     const fetchedData = await fetchData( country )
     // fetch the data and load it in the country
     console.log(fetchedData)
+
     //set the state
+    this.setState({ data: fetchedData, country: country})
 
   }
 
   render(){
     //taking the data from the state and share it using props
-    const { data } = this.state
+    const { data, country } = this.state
 
     //nesting components in the root app component
     return (
@@ -46,7 +48,7 @@ class App extends React.Component {
         {/* passing data as props from the state */}
         <Cards data={data}/>
         <CountryPicker  handleCountryChange={this.handleCountryChange}/>
-        <Chart />
+        <Chart  data={data} country/>
       </div>
     );
   }
